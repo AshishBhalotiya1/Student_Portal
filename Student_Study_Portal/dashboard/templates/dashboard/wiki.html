@@ -1,0 +1,32 @@
+{% extends 'dashboard/base.html' %} 
+{% load static %} 
+{% block content %} 
+{% load crispy_forms_tags %}
+
+<section class="text-center container">
+  <h2>Search articles in wikipedia</h2>
+  <p>just enter the search query to obtain the results</p>
+  <b>Enter without any space</b>
+  <form action="" method="post">
+    {% csrf_token %} {{form|crispy}}
+    <input class="btn btn-danger" type="submit" value="Submit" />
+  </form>
+  <br />
+  {% if title %}
+  <div class="container">
+    <div class="content-section p-0 mt-5">
+      <div class="custom-header">
+        <h2>{{title}}</h2>
+        <a href="{{link}}" style="color: #007bff" target="_blank"
+          >{{link|slice:"0:30"}}...</a
+        >
+      </div>
+      <hr class="p-0 m-0" />
+      <p class="description m-5 p-5">{{details}}</p>
+      <hr />
+    </div>
+  </div>
+  {% endif %}
+</section>
+
+{% endblock content %}
